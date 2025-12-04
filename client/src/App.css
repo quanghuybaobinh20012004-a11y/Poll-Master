@@ -1,0 +1,431 @@
+/* --- RESET & GLOBAL --- */
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --bg: #f3f4f6;
+  --surface: #ffffff;
+  --text-main: #111827;
+  --text-sub: #6b7280;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --radius: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  /* Fix cảnh báo print-color-adjust */
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- HEADER --- */
+.app-header {
+  background: var(--surface);
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--primary);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.header-content p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-sub);
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* --- MAIN LAYOUT --- */
+.main-content {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+/* --- BUTTONS --- */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: white;
+  border: 1px solid #ddd;
+  color: #555;
+  padding: 0.75rem 1.2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  color: var(--text-sub);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-text:hover {
+  color: var(--primary);
+}
+
+/* --- CREATE PANEL --- */
+.create-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, opacity 0.4s;
+  opacity: 0;
+  margin-bottom: 2rem;
+}
+
+.create-panel.active {
+  max-height: 600px; /* Tăng chiều cao để chứa thêm settings */
+  opacity: 1;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0,0,0,0.02);
+  margin-bottom: 1.5rem; /* Cách đều các card */
+}
+
+.input-field {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  margin-bottom: 0.75rem;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--primary);
+}
+
+.question-input {
+  font-weight: bold;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+/* --- POLL SETTINGS (MULTI-SELECT) --- */
+.poll-settings {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+/* --- POLL CARD --- */
+.poll-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.poll-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.poll-question {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: #1f2937;
+}
+
+/* --- BADGES --- */
+.poll-badges {
+  display: flex;
+  gap: 5px;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.badge.multi {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+.badge.single {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.security-badge {
+  font-size: 0.75rem;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+  font-weight: 600;
+  background: #ecfdf5;
+  width: fit-content;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* --- POLL LAYOUT & VOTING --- */
+.poll-layout {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.vote-options {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chart-container {
+  flex: 0.8;
+  min-width: 200px;
+}
+
+.vote-item {
+  position: relative;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f9fafb;
+  border: 1px solid #f3f4f6;
+  transition: all 0.2s;
+}
+
+.vote-item:hover {
+  border-color: var(--primary);
+  background: white;
+}
+
+.vote-item.disabled {
+  cursor: default;
+  opacity: 0.9;
+}
+
+/* Highlight item đã chọn */
+.vote-item.selected {
+  border: 2px solid #6366f1;
+  background: #eef2ff;
+}
+
+.vote-progress-bg {
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index: 0;
+}
+
+.vote-progress-fill {
+  height: 100%;
+  transition: width 0.5s ease-out;
+}
+
+.vote-content {
+  position: relative;
+  z-index: 1;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+.vote-text {
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vote-stat {
+  font-size: 0.875rem;
+  color: var(--text-sub);
+}
+
+/* --- FOOTER & SOCIAL ACTIONS --- */
+.poll-footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Để không bị vỡ giao diện trên mobile */
+  gap: 10px;
+}
+
+.left-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  transition: 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.like-btn {
+  background: #fee2e2;
+  color: #ef4444;
+  font-weight: bold;
+}
+.like-btn:hover {
+  background: #fecaca;
+}
+
+.copy-btn {
+  background: #f3f4f6;
+  color: #374151;
+}
+.copy-btn:hover {
+  background: #e5e7eb;
+  color: black;
+}
+
+.download-btn {
+  background: #dbeafe;
+  color: #1e40af;
+}
+.download-btn:hover {
+  background: #bfdbfe;
+}
+
+.social-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.share-label {
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.icon-btn {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+
+.icon-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.fb { background: #1877f2; } /* Facebook Blue */
+.tw { background: #000000; } /* X (Twitter) Black */
+.in { background: #0a66c2; } /* LinkedIn Blue */
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; }
+  .card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+  .app-container { display: block; }
+  .avoid-break { break-inside: avoid; }
+}
+
+@media (max-width: 600px) {
+  .poll-layout {
+    flex-direction: column;
+  }
+  .chart-container {
+    width: 100%;
+    height: 180px;
+  }
+  .header-content h1 {
+    font-size: 1.25rem;
+  }
+  .poll-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .social-actions {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 5px;
+  }
+}
